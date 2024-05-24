@@ -30,5 +30,21 @@ def post():
     })
     return '성공', 200
 
+@app.route('/follow', methods=['post'])
+def follow():
+    payload = request.json
+    userId = int(payload['id'])
+    userIdToFollow = int(payload['follow'])
+    
+    if userId not in app.users or userIdToFollow not in app.users:
+        return '사용자가 존재하지 않습니다', 400
+    user = app.users[userId]
+    if user.get('follow'):
+        user['follow'].append(userIdToFollow)
+        user['follow'] = list(set(user['follow']))
+    else:
+        user['follow'] = [userIdToFollow]
+    return jsonify(user)
+
 if __name__ == '__main__':
     app.run()
