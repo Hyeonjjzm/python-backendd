@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+</head>
+<body>
+    <h1>miniSNS</h1>
+    <div>
+        <button>메인 페이지</button>
+        <button>회원 가입</button>
+        <button>포스팅</button>
+    </div>
+
+        <div class="container">
+            <table>
+                {% for user_id, user in users.items() %}
+                <tr>
+                    <td>[{{user_id}}]</td>
+                    <td><strong>{{ user.name }}</strong></td>
+                    <td>({{ user.email }}) </td>
+                    <td> {{ user.profile }} </td>
+                </tr>
+                {% endfor%}
+            </table>
+        </div>
+    </body>
+</html>
